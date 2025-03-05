@@ -2,6 +2,7 @@
 
 require "functions.php";
 
-$page = "Home";
+require 'router.php';
 
-require "views/index.view.php";
+
+
