@@ -5,6 +5,7 @@
             <div class="flex items-center space-x-4">
                 <ul class="flex space-x-4">
                     <li><a href="/" class="hover:underline <?= urlIs('/') ? 'text-yellow-300' : '';  ?> ">Home</a></li>
+                    <li><a href="/notes" class="hover:underline <?= urlIs('/notes') ? 'text-yellow-300' : '';  ?>">Notes</a></li>
                     <li><a href="/about" class="hover:underline <?= urlIs('/about') ? 'text-yellow-300' : '';  ?>">About</a></li>
                     <li><a href="/contacts" class="hover:underline <?= urlIs('/contacts') ? 'text-yellow-300' : '';  ?>">Contact</a></li>
                 </ul>

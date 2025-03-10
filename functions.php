@@ -11,3 +11,10 @@ function abort($code = 404) {
 
     die();
 }
+
+function dd($data) {
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+    die();
+}
