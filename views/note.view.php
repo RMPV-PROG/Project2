@@ -11,7 +11,7 @@ require "partials/head.php";
         <a href="/notes"  class="text-blue-500 hover:underline"><<< go back</a>
     </p>
     <p class="text-gray-700 text-center">
-        <?= $note['body'] ?>
+        <?= htmlspecialchars($note['body']) ?>
     </p>
 </div>
     

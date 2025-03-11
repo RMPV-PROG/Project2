@@ -11,10 +11,13 @@ require "partials/head.php";
         <?php foreach ($notes as $note) : ?>
             <li>
                 <a href="/note?id=<?=$note['id'] ?>" class="text-blue-500 hover:underline">
-                    <?= $note['body'] ?>
+                    <?= htmlspecialchars($note['body']) ?>
                 </a>
             </li>
         <?php endforeach; ?>
+    </p>
+    <p class="mt-5">
+        <a href="/notes/create" class="text-blue-700 hover:underline">Create Note</a>
     </p>
 </div>
     
