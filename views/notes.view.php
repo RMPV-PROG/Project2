@@ -1,7 +1,7 @@
 <?php
 require "partials/nav.php";
 require "partials/head.php";
-dd($notes)
+// dd($notes);
 ?>
     
 <!-- Home Page Body -->
@@ -9,7 +9,11 @@ dd($notes)
     <h1 class="text-3xl font-bold text-center mb-4">Notes page</h1>
     <p class="text-gray-700 text-center">
         <?php foreach ($notes as $note) : ?>
-            <li><?= $note['body'] ?></li>
+            <li>
+                <a href="/note?id=<?=$note['id'] ?>" class="text-blue-500 hover:underline">
+                    <?= $note['body'] ?>
+                </a>
+            </li>
         <?php endforeach; ?>
     </p>
 </div>
