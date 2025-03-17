@@ -13,7 +13,10 @@ require "partials/nav.php";
         <form method="POST">
             <label for="body">Description</label>
             <div>
-                <textarea id="body" name="body"></textarea>
+                <textarea id="body" name="body"><?= $_POST['body'] ?? ''  ?></textarea>
+                <?php if (isset($errors['body'])) : ?>
+                    <p class="text-red-500 text-sm"><?= $errors['body'] ?></p>
+                <?php endif; ?>
             </div>
             <p>
                 <button type="submit">Create</button>
