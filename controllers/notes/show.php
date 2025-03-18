@@ -1,6 +1,6 @@
 <?php 
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 
 $db = new Database($config['database']);
 
@@ -13,4 +13,4 @@ $note = $db->query($sql, ['id' => $_GET['id']])->findOrFail();
 
 authorize ($note['user_id'] === $userId);
 
-require "views/note.view.php";
+require base_path("views/notes/show.view.php");

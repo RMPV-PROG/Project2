@@ -1,6 +1,6 @@
 <?php 
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 
 $db = new Database($config['database']);
 
@@ -11,4 +11,4 @@ $userId = 2;
 $sql = "SELECT * FROM notes WHERE user_id = {$userId}"; 
 $notes = $db->query($sql)->get();
 
-require "views/notes.view.php";
+require base_path("views/notes/index.view.php");

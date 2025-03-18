@@ -1,12 +1,12 @@
 <?php 
 
-require 'Validator.php';
+require base_path('Validator.php');
 
 $page = "Create Note";
 
 $userId = 2;
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 
 $db = new Database($config['database']);
 
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['body'] = "The body must be between {$body_min_ln} and {$body_max_ln} characters";
     }
 
-
     if (empty($errors)) {
         $sql = "INSERT INTO notes (body, user_id) VALUES (:body, :user_id)"; 
         $db->query($sql, ['body' => $_POST['body'], 'user_id' => $userId]);
@@ -30,4 +29,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 }
 
-require "views/note-create.view.php";
+require base_path("views/notes/create.view.php");
