@@ -1,20 +1,22 @@
 <?php 
 
+
+
 function urlIs($value) {
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-function abort($code = Response::NOT_FOUND) {
+function abort($code = Core\Response::NOT_FOUND) {
     http_response_code($code);
 
-    require "views/{$code}.php";
+    require base_path("views/{$code}.php");
 
     die();
 }
 
-function authorize ($condition, $status = Response::FORBIDDEN) {
+function authorize ($condition, $status = Core\Response::FORBIDDEN) {
     if (! $condition) {
-        abort(Response::FORBIDDEN);
+        abort(Core\Response::FORBIDDEN);
     }
 }
 

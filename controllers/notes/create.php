@@ -1,6 +1,9 @@
 <?php 
 
-require base_path('Validator.php');
+use Core\Database;
+use Core\Validator;
+
+require base_path('Core/Validator.php');
 
 $userId = 2;
 
