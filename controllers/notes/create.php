@@ -2,17 +2,15 @@
 
 require base_path('Validator.php');
 
-$page = "Create Note";
-
 $userId = 2;
 
 $config = require base_path('config.php');
 
 $db = new Database($config['database']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$errors = [];
 
-    $errors = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $body_min_ln = 3;
     $body_max_ln = 5;
@@ -29,4 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 }
 
-require base_path("views/notes/create.view.php");
+view("notes/create.view.php", [
+    'page' => 'Create Note',
+    'errors' => $errors
+]);

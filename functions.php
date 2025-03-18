@@ -22,6 +22,17 @@ function base_path($path) {
     return BASE_PATH . $path;
 }
 
+
+function view ($path, $attributes = []) {
+
+    // foreach ($attributes as $key => $value) {
+    //     $$key = $value;
+    // }
+    extract($attributes);
+
+    require base_path("views/{$path}");
+}
+
 function dd($data) {
     echo '<pre>';
     var_dump($data);

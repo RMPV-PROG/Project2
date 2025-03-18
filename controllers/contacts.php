@@ -1,5 +1,5 @@
 <?php 
 
-$page = "Contacts";
-
-require base_path("views/contacts.view.php");
+view("contacts.view.php", [
+    'page' => 'Contacts'
+]);
