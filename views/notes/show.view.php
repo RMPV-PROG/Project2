@@ -13,11 +13,9 @@ require base_path("views/partials/nav.php");
     <p class="text-gray-700 text-center">
         <?= htmlspecialchars($note['body']) ?>
     </p>
-    <form method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="id" value="<?= $note['id'] ?>">
-        <button>Delete</button>
-    </form>
+    <p>
+        <a href="/note/edit?id=<?= $note['id'] ?>">Edit</a>
+    </p>
 </div>
     
 <?php
