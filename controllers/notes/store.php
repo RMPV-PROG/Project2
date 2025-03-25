@@ -1,5 +1,6 @@
 <?php 
 
+use Core\App;
 use Core\Database;
 use Core\Validator;
 
@@ -7,9 +8,7 @@ require base_path('Core/Validator.php');
 
 $userId = 2;
 
-$config = require base_path('config.php');
-
-$db = new Database($config['database']);
+$db = App::resolve(Database::class);
 
 $errors = [];
 
