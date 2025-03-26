@@ -13,7 +13,7 @@ $db = App::resolve(Database::class);
 $errors = [];
 
 $body_min_ln = 3;
-$body_max_ln = 5;
+$body_max_ln = 15;
 if (! Validator::string($_POST['body'], $body_min_ln, $body_max_ln)) {
     $errors['body'] = "The body must be between {$body_min_ln} and {$body_max_ln} characters";
 }

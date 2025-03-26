@@ -5,37 +5,31 @@ require base_path("views/partials/head.php");
 require base_path("views/partials/nav.php");
 
 ?>
-    
-<!-- Home Page Body -->
-<div class="container mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-    <h1 class="text-3xl font-bold text-center mb-4">Edit a Note</h1>
-    <p class="text-gray-700 text-center">
+
+    <div class="container mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg w-96">
+        <h2 class="text-2xl font-bold mb-4 text-center">Edit a Note</h2>
         <form method="POST" action="/note">
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="id" value="<?= $note['id'] ?>">
 
-            <label for="body">Description</label>
-            <div>
-                <textarea id="body" name="body"><?= $note['body'] ?></textarea>
+            <div class="mb-4">
+                <label class="block text-gray-700">Note</label>
+                <textarea name="body" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" rows="4"><?= $note['body'] ?? ''  ?></textarea>
                 <?php if (isset($errors['body'])) : ?>
                     <p class="text-red-500 text-sm"><?= $errors['body'] ?></p>
                 <?php endif; ?>
             </div>
-            <p>
-                <button type="submit">Update Note</button>
-            </p>
-            <p>
-                <a href="/notes">Cancel</a>
-            </p>                  
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Update Note</button>
         </form>
-
+        <p>
+            <a href="/notes">Cancel</a>
+        </p> 
         <form method="POST" action="/note">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="id" value="<?= $note['id'] ?>">
             <button type="submit">Delete</button>
         </form> 
-    </p>
-</div> 
+    </div>
 
 <?php
 
