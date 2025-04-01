@@ -2,48 +2,64 @@
 
 namespace Core;
 
+use Core\Middleware\Auth;
+use Core\Middleware\Guest;
+
 class Router {
     protected $routes = [];
 
     public function get($uri, $controller)
     {
-        $this->add($uri, $controller, 'GET');
+        return $this->add($uri, $controller, 'GET');
     }
 
     public function post($uri, $controller)
     {
-        $this->add($uri, $controller, 'POST');
+        return $this->add($uri, $controller, 'POST');
     }
 
     public function delete($uri, $controller)
     {
-        $this->add($uri, $controller, 'DELETE');
+        return $this->add($uri, $controller, 'DELETE');
     }
 
     public function patch($uri, $controller)
     {
-        $this->add($uri, $controller, 'PATCH');
+        return $this->add($uri, $controller, 'PATCH');
     }
 
     public function put($uri, $controller)
     {
-        $this->add($uri, $controller, 'PUT');
+        return $this->add($uri, $controller, 'PUT');
     }
 
     public function add($uri, $controller, $method)
     {
-        // $this->routes[] = [
-        //     'uri' => $uri,
-        //     'controller' => $controller,
-        //     'method' => $method
-        // ];
-        $this->routes[] = compact('uri','controller','method');
+        $this->routes[] = [
+            'uri' => $uri,
+            'controller' => $controller,
+            'method' => $method,
+            'middleware' => null
+        ];
+        // $this->routes[] = compact('uri','controller','method');
+        return $this;
     }
 
     public function route($uri, $method)
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+              
+                if ($route['middleware'] === 'guest') {
+                    // $obj = new Guest;
+                    // $obj->handle();
+                    (new Guest)->handle();
+                }
+
+                if ($route['middleware'] === 'auth') {
+                    (new Auth)->handle();
+                }
+            
                 return require base_path($route['controller']);
             }
         }
@@ -57,5 +73,11 @@ class Router {
         require base_path("views/{$code}.php");
     
         die();
+    }
+
+    public function only($key) 
+    {
+        $key_last = array_key_last($this->routes);
+        $this->routes[$key_last]['middleware'] = $key;
     }
 }

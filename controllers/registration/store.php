@@ -21,16 +21,16 @@ if (! Validator::string($password, $passw_min_ln, $passw_max_ln)) {
     $errors['password'] = "Please provide a password at least {$passw_min_ln} characters.";
 }
 
-$user = $db->query('SELECT * FROM users WHERE email = :email', [
-            'email' => $email
-        ])->find();
-
 if (! empty($errors)) {
     view("registration/create.view.php", [
         'page' => 'New User',
         'errors' => $errors
     ]);
 } else {
+
+    $user = $db->query('SELECT * FROM users WHERE email = :email', [
+        'email' => $email
+    ])->find();
 
     if (! $user) {
         $db->query('INSERT INTO users (email, password) VALUES (:email, :password)', [
