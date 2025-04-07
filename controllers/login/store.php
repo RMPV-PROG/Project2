@@ -18,12 +18,12 @@ if (! Validator::email($email)) {
 $passw_min_ln = 4;
 $passw_max_ln = 255;
 if (! Validator::string($password, $passw_min_ln, $passw_max_ln)) {
-    $errors['password'] = "Please provide a password at least {$passw_min_ln} characters.";
+    $errors['password'] = "Please provide a valid password";
 }
 
 if (! empty($errors)) {
-    view("registration/create.view.php", [
-        'page' => 'New User',
+    view("login/create.view.php", [
+        'page' => 'Log In',
         'errors' => $errors
     ]);
 } else {
@@ -32,22 +32,25 @@ if (! empty($errors)) {
         'email' => $email
     ])->find();
 
-    if (! $user) {
-        $db->query('INSERT INTO users (email, password) VALUES (:email, :password)', [
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_BCRYPT) 
+
+    if ($user && password_verify($password, $user['password'])) {
+
+        login([
+            'email' => $user['email']
         ]);
 
+        header('location: /');
+        exit;
 
-        login(['email' => $email]);
+    } else {
+
+        view("login/create.view.php", [
+            'page' => 'Log In',
+            'errors' => [
+                'email' => 'No account found'
+            ]
+        ]);
+
     }
 
-    header('location: /');
-    exit;
-
 }
-
-
-
-
-

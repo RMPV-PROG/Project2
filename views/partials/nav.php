@@ -13,7 +13,7 @@
                     <?php if ($_SESSION['user'] ?? false) : ?>
                         <a href="#" class="bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-200">Logout</a>
                     <?php else : ?>
-                        <a href="#" class="bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-200">Login</a>
+                        <a href="/login" class="bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-200">Login</a>
                         <a href="/register" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Register</a>
                     <?php endif; ?>
                 </div>
