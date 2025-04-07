@@ -4,6 +4,7 @@ namespace Core;
 
 use Core\Middleware\Auth;
 use Core\Middleware\Guest;
+use Core\Middleware\Middleware;
 
 class Router {
     protected $routes = [];
@@ -50,15 +51,24 @@ class Router {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
               
-                if ($route['middleware'] === 'guest') {
-                    // $obj = new Guest;
-                    // $obj->handle();
-                    (new Guest)->handle();
-                }
+                // if ($route['middleware'] === 'guest') {
+                //     // $obj = new Guest;
+                //     // $obj->handle();
+                //     (new Guest)->handle();
+                // }
 
-                if ($route['middleware'] === 'auth') {
-                    (new Auth)->handle();
-                }
+                // if ($route['middleware'] === 'auth') {
+                //     (new Auth)->handle();
+                // }
+
+                // refactor 1
+                // if ($route['middleware']) {
+                //     $middleware = Middleware::MAP[$route['middleware']];
+                //     (new $middleware)->handle();
+                // }
+
+                // refactor 2
+                Middleware::resolve($route['middleware']);
             
                 return require base_path($route['controller']);
             }
