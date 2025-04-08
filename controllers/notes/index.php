@@ -7,7 +7,7 @@ $db = App::resolve(Database::class);
 
 $page = "Notes";
 
-$userId = 2;
+$userId = $_SESSION['user']['id'];
 
 $sql = "SELECT * FROM notes WHERE user_id = {$userId}"; 
 $notes = $db->query($sql)->get();

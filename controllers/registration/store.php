@@ -38,8 +38,12 @@ if (! empty($errors)) {
             'password' => password_hash($password, PASSWORD_BCRYPT) 
         ]);
 
+        $userID = $db->connection->lastInsertId();
 
-        login(['email' => $email]);
+        login([
+            'id' => $userID,
+            'email' => $email
+        ]);
     }
 
     header('location: /');

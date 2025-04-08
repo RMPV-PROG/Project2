@@ -3,7 +3,7 @@
 use Core\Database;
 use Core\Validator;
 
-$userId = 2;
+$userId = $_SESSION['user']['id'];
 
 $errors = [];
 

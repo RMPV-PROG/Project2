@@ -10,7 +10,7 @@ use Core\Database;
 // $db = App::Container()->resolve(Database::class);
 $db = App::resolve(Database::class);
 
-$userId = 2;
+$userId = $_SESSION['user']['id'];
 
 $sql = "SELECT * FROM notes WHERE id = :id"; 
 $note = $db->query($sql, ['id' => $_POST['id']])->findOrFail();

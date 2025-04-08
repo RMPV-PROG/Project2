@@ -46,5 +46,4 @@ class Database
         return $result;
     }
 
-
 }

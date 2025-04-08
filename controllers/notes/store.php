@@ -6,7 +6,7 @@ use Core\Validator;
 
 require base_path('Core/Validator.php');
 
-$userId = 2;
+$userId = $_SESSION['user']['id'];
 
 $db = App::resolve(Database::class);
 

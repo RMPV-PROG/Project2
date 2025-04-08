@@ -36,6 +36,7 @@ if (! empty($errors)) {
     if ($user && password_verify($password, $user['password'])) {
 
         login([
+            'id' => $user['id'],
             'email' => $user['email']
         ]);
 
