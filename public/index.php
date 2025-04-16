@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use Core\Session;
 
 session_start();
 
@@ -21,6 +23,9 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 require base_path('bootstrap.php');
 
 $router->route($path, $method);
+
+// unset($_SESSION['_flash']);
+Session::unflash();
 
 
 

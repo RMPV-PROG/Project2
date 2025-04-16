@@ -1,5 +1,8 @@
-<?php 
+<?php
+
+use Core\Session;
 
 view("login/create.view.php", [
-    'page' => 'Log In'
+    'page' => 'Log In',
+    'errors' => Session::getFlash('errors') 
 ]);
